@@ -26,15 +26,20 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     goals: 'package'
 
-- task: ArchiveFiles@2
-  displayName: Archive Files
+- task: CopyFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)'
+    SourceFolder: 'Copy Azure Functions files'
+    Contents: '**/azure-functions/**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: ArchiveFiles@2
+  displayName: Zip Azure Functions files
+  inputs:
+    rootFolderOrFile: '$(build.artifactstagingdirectory)/target/azure-functions/**'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
-    
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
