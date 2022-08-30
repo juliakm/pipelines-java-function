@@ -30,26 +30,26 @@ steps:
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)/target/azure-functions/'
     Contents: '**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-# - task: ArchiveFiles@2
-#   displayName: Zip Azure Functions files
-#   inputs:
-#     rootFolderOrFile: '$(build.artifactstagingdirectory)/target/azure-functions/**'
-#     includeRootFolder: false
-#     archiveType: 'zip'
-#     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-#     replaceExistingArchive: true
-# - task: PublishTestResults@2
-#   inputs:
-#     testResultsFormat: 'JUnit'
-#     testResultsFiles: '**/TEST-*.xml'
+- task: ArchiveFiles@2
+  displayName: Zip Azure Functions files
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
 
-# - task: AzureFunctionApp@1
-#   displayName: Azure Function App deploy
-#   inputs:
-#     azureSubscription: 'Content health and performance(82c135d4-f813-4bec-a93e-60e4323918ee)'
-#     appType: 'functionApp'
-#     appName: '$(appName)'
-#     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-#     deploymentMethod: 'runFromPackage'
+- task: AzureFunctionApp@1
+  displayName: Azure Function App deploy
+  inputs:
+    azureSubscription: 'Content health and performance(82c135d4-f813-4bec-a93e-60e4323918ee)'
+    appType: 'functionApp'
+    appName: '$(appName)'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    deploymentMethod: 'runFromPackage'
