@@ -29,7 +29,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'Copy Azure Functions files'
-    Contents: '**/azure-functions/**'
+    Contents: '**/target/azure-functions/**'
     TargetFolder: '$(build.artifactstagingdirectory)'
 
 - task: ArchiveFiles@2
