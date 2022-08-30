@@ -50,6 +50,6 @@ steps:
   inputs:
     azureSubscription: 'Content health and performance(82c135d4-f813-4bec-a93e-60e4323918ee)'
     appType: 'functionApp'
-    appName: $(appName)
+    appName: '$(appName)'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    deploymentMethod: 'auto'
+    deploymentMethod: 'runFromPackage'
