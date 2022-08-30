@@ -28,7 +28,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/target/azure-functions/**/'
+    SourceFolder: '$(system.defaultworkingdirectory)/target/azure-functions/'
     Contents: '**'
     TargetFolder: '$(build.artifactstagingdirectory)'
 
