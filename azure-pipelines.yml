@@ -28,8 +28,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '/target/azure-functions/**/**'
+    SourceFolder: '$(Build.SourcesDirectory)/target/azure-functions/**/'
+    Contents: '**'
     TargetFolder: '$(build.artifactstagingdirectory)'
 
 # - task: ArchiveFiles@2
